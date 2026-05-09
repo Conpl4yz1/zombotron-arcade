@@ -11,14 +11,15 @@ window.addEventListener("load", () => {
 
         player.load({
             url: "zombotron.swf",
-            // This MUST point to your local assets folder to fix the CORS error
-            base: "./assets/", 
+            // We set base to empty to force it to stay in your folder
+            base: "", 
             allowScriptAccess: true,
+            // These settings bypass the "phone home" checks
             parameters: "wmode=direct&quality=high&play=true",
+            salign: "lt",
+            scale: "showAll",
         }).then(() => {
-            console.log("Local assets loaded. Game should be interactive.");
-        }).catch((err) => {
-            console.error("Critical Load Error:", err);
+            console.log("Ruffle loaded zombotron.swf locally.");
         });
 
         player.style.width = "100%";
