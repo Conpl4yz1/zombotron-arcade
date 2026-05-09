@@ -2,23 +2,28 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Zombotron | Nexus Edition</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zombotron | TSFNM Arcade</title>
     <link rel="stylesheet" href="style.css">
+    <!-- Points to the ruffle.js in your ruffle folder -->
     <script src="ruffle/ruffle.js"></script>
 </head>
 <body>
 
-    <div class="game-header">
-        <h1>ZOMBOTRON</h1>
-        <button id="fs-toggle">FULL SCREEN</button>
-    </div>
+    <div id="ui-layer">
+        <div id="top-bar">
+            <h1>ZOMBOTRON</h1>
+            <button id="fullscreen-button">ENTER FULLSCREEN</button>
+        </div>
 
-    <div id="game-container">
-        <!-- Ruffle will inject the game here -->
-    </div>
+        <div id="game-viewport">
+            <!-- Ruffle will inject the game here -->
+        </div>
 
-    <div class="footer">
-        <p>Conpl4yz0 & TSFNM Multiplayer: Play side-by-side and compare scores!</p>
+        <div id="status-panel">
+            <p>System Status: <span class="active">CONNECTED</span></p>
+            <p>Render Mode: Hardware Accelerated (GTX 1650 Optimized)</p>
+        </div>
     </div>
 
     <script src="script.js"></script>
