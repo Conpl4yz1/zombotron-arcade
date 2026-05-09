@@ -1,34 +1,31 @@
 window.RufflePlayer = window.RufflePlayer || {};
-let arcadePlayer;
+let player;
 
 window.addEventListener("load", () => {
     const ruffle = window.RufflePlayer.newest();
-    arcadePlayer = ruffle.createPlayer();
+    player = ruffle.createPlayer();
     const container = document.getElementById("game-viewport");
     
     if (container) {
-        container.appendChild(arcadePlayer);
+        container.appendChild(player);
 
-        arcadePlayer.load({
+        player.load({
             url: "zombotron.swf",
-            // The 'base' fixes the green radar "stuck" screen
-            base: "https://evilgames.eu/flashgames/", 
-            parameters: "wmode=direct&quality=high&play=true",
+            // This MUST point to your local assets folder to fix the CORS error
+            base: "./assets/", 
             allowScriptAccess: true,
+            parameters: "wmode=direct&quality=high&play=true",
+        }).then(() => {
+            console.log("Local assets loaded. Game should be interactive.");
+        }).catch((err) => {
+            console.error("Critical Load Error:", err);
         });
 
-        arcadePlayer.style.width = "100%";
-        arcadePlayer.style.height = "100%";
+        player.style.width = "100%";
+        player.style.height = "100%";
     }
 });
 
-// Fullscreen logic using a global listener to ensure it works on all browsers
-document.addEventListener("click", (e) => {
-    if (e.target && e.target.id === "fullscreen-button") {
-        if (arcadePlayer && typeof arcadePlayer.enterFullscreen === "function") {
-            arcadePlayer.enterFullscreen();
-        } else {
-            console.warn("Player not ready or fullscreen blocked.");
-        }
-    }
+document.getElementById("fullscreen-button").addEventListener("click", () => {
+    if (player) player.enterFullscreen();
 });
