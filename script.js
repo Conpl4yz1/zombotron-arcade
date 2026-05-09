@@ -7,8 +7,8 @@ window.addEventListener("load", (event) => {
 
     player.load({
         url: "zombotron.swf",
-        // Force the base to the original game domain so it finds its assets
-        base: "https://evilgames.eu/swf/", 
+        // This is the absolute path to the game's assets
+        base: "https://evilgames.eu/flashgames/", 
         allowScriptAccess: true, 
         parameters: "wmode=direct&quality=high&play=true",
     });
